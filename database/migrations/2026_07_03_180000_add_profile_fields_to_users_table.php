@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('profile_photo')->nullable()->after('border_style');
+            $table->text('bio')->nullable()->after('profile_photo');
+            $table->string('instagram_link')->nullable()->after('bio');
         });
     }
 
@@ -22,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('profile_photo');
+            $table->dropColumn(['profile_photo', 'bio', 'instagram_link']);
         });
     }
 };
