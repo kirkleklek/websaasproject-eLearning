@@ -3,13 +3,7 @@ nixPkgs = ["nodejs_20", "php83", "php83Packages.composer"]
 
 [phases.install]
 cmds = [
-    "composer install --no-dev --optimize-autoloader",
-    "npm install --legacy-peer-deps"
-]
-
-[phases.build]
-cmds = [
-    "npm run build"
+    "composer install --no-dev --optimize-autoloader"
 ]
 
 [start]
