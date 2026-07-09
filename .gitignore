@@ -14,7 +14,7 @@
 /.zed
 /auth.json
 /node_modules
-/public/build
+# /public/build - Commented out: need pre-built assets for Railway deployment
 /public/fonts-manifest.dev.json
 /public/hot
 /public/storage
