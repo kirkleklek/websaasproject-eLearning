@@ -488,54 +488,8 @@
     </footer>
 
     <script>
-        // Preloader - Only show on first visit
+        // Text animations and effects
         document.addEventListener('DOMContentLoaded', () => {
-            const preloader = document.getElementById('preloader');
-            const hasVisited = localStorage.getItem('wib_has_visited');
-
-            if (hasVisited) {
-                // User has visited before, hide preloader immediately
-                preloader.style.display = 'none';
-                document.getElementById('app-body').style.overflow = 'auto';
-            } else {
-                // First visit, show preloader animation
-                localStorage.setItem('wib_has_visited', 'true');
-
-                // Matrix Rain Effect
-                const matrixRain = document.getElementById('matrix-rain');
-                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*';
-                const columnCount = Math.floor(window.innerWidth / 20);
-
-                for (let i = 0; i < columnCount; i++) {
-                    const column = document.createElement('div');
-                    column.className = 'matrix-column';
-                    column.style.left = (i * 20) + 'px';
-
-                    let text = '';
-                    const length = Math.floor(Math.random() * 20) + 10;
-                    for (let j = 0; j < length; j++) {
-                        text += characters.charAt(Math.floor(Math.random() * characters.length)) + '\n';
-                    }
-                    column.textContent = text;
-
-                    const duration = Math.random() * 3 + 2;
-                    const delay = Math.random() * 2;
-                    column.style.animationDuration = duration + 's';
-                    column.style.animationDelay = delay + 's';
-
-                    matrixRain.appendChild(column);
-                }
-
-                // Hide preloader after animation
-                setTimeout(() => {
-                    preloader.classList.add('fade-out');
-                    setTimeout(() => {
-                        preloader.style.display = 'none';
-                        document.getElementById('app-body').style.overflow = 'auto';
-                    }, 1000);
-                }, 2500);
-            }
-
             const headings = document.querySelectorAll('h1, h2, h3');
             headings.forEach(heading => {
                 const text = heading.textContent;
