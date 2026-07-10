@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
         if (env('APP_URL')) {
             URL::forceRootUrl(env('APP_URL'));
         }
+        URL::forceScheme('https'); 
     }
 }
 
