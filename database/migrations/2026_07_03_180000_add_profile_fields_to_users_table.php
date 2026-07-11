@@ -12,9 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('profile_photo')->nullable()->after('border_style');
-            $table->text('bio')->nullable()->after('profile_photo');
-            $table->string('instagram_link')->nullable()->after('bio');
+
+            if (!Schema::hasColumn('users', 'profile_photo')) {
+                $table->string('profile_photo')->nullable()->after('border_style');
+            }
+
+            if (!Schema::hasColumn('users', 'bio')) {
+                $table->text('bio')->nullable()->after('profile_photo');
+            }
+
+            if (!Schema::hasColumn('users', 'instagram_link')) {
+                $table->string('instagram_link')->nullable()->after('bio');
+            }
+
         });
     }
 
@@ -24,7 +34,25 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['profile_photo', 'bio', 'instagram_link']);
+
+            $columns = [];
+
+            if (Schema::hasColumn('users', 'profile_photo')) {
+                $columns[] = 'profile_photo';
+            }
+
+            if (Schema::hasColumn('users', 'bio')) {
+                $columns[] = 'bio';
+            }
+
+            if (Schema::hasColumn('users', 'instagram_link')) {
+                $columns[] = 'instagram_link';
+            }
+
+            if (!empty($columns)) {
+                $table->dropColumn($columns);
+            }
+
         });
     }
 };
